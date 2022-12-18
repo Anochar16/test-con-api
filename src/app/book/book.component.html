@@ -1,0 +1,25 @@
+<p-table [value]="bookList" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 2%;">ID</th>
+            <th style="width:18%">Name</th>
+            <th style="width: 60%;">Detail</th>
+            <th><button pButton type="button" label="New" class="p-button-outlined  p-button-success" (click)="onClickDialog()"></button>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-book>
+        <tr>
+            <td>{{book.id}}</td>
+            <td>{{book.name}}</td>
+            <td>{{book.detail}}</td>
+            <td><button pButton type="button" label="Edit" class="p-button-outlined p-button-warning " (click)="editbook(book)"></button>
+                <button pButton type="button" label="Delete" class="p-button-outlined p-button-danger" (click)="deleteBook(book)"
+                    style="margin-left: 3%;"></button>
+            </td>
+        </tr>
+    </ng-template></p-table>
+<app-add-edit-book [display]="display" [selectBook]="selectBook" (clickClose)="hideAddDialog($event)"
+    (clickAddEdit)="saveOrUpdateBookToList($event)"></app-add-edit-book>
+
+    <p-confirmDialog header="Delete" icon="pi pi-exclamation-triangle"></p-confirmDialog>

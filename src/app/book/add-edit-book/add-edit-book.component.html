@@ -1,0 +1,26 @@
+<p-dialog header="{{dialogType}} book" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+    [resizable]="false" (onHide)="closeDialog()">
+    <form [formGroup]="bookForm">
+
+        <div class="field">
+            <label class="block" for="name">Name</label>
+            <input type="text" pInputText id="name" formControlName="name" />
+            <small class="bookError"
+                *ngIf="bookForm.controls['name'].invalid && bookForm.controls['name'].dirty">Fidld is required</small>
+        </div>
+
+        <div class="field">
+            <label class="block" for="detail">Detail</label>
+            <input type="text" pInputText id="detail" formControlName="detail" />
+            <small class="bookError"
+                *ngIf="bookForm.controls['detail'].invalid && bookForm.controls['detail'].dirty">Fidld is required</small>
+        </div>
+    </form>
+
+
+    <ng-template pTemplate="footer">
+        <p-button (click)="addEditBook()" label="{{dialogType}}" [disabled]="bookForm.invalid" styleClass="p-button-text"></p-button>
+        <p-button (click)="closeDialog()" label="cancel" 
+            styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
